@@ -1,6 +1,7 @@
 const pokemon_box = document.getElementById("pokemon_box");
 const pokemon_number = 301;
 
+
 async function fetchPokemons() {
     for (let i = 1; i <= pokemon_number; i++) {
         await getPokemon(i);
@@ -19,21 +20,24 @@ function createPokemon (pokemon) {
     const pokemonObject = document.createElement('div');
     pokemonObject.classList.add('pokemon');
     const { id, name, sprites, types } = pokemon;
-    const type = types[0].type.name;
+    var type = types[0].type.name;
+    pokemonObject.classList.add(type);
     const pokemonInnerHTML = `
     <div class="img-container">
     <img src="${sprites.front_default}" alt="${name}" />
   </div>
   <div class="info">
     <span class="number">${id}</span>
-    <h3 class="name">${name}</h3>
+    <h3 class="name">${name.toIpp}</h3>
     <small class="type">Type: <span>${type}</span></small>
   </div>
   `;
     pokemonObject.innerHTML = pokemonInnerHTML;
     pokemon_box.appendChild(pokemonObject);
     console.log(pokemonObject);
+  
 }
+
 
 function liveSearch() {
     // Locate the card elements
