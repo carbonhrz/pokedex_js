@@ -1,19 +1,13 @@
 const pokemon_box = document.getElementById("pokemon_box");
-const pokemon_number = 301;
+const pokemon_number = 151;
 
-
-async function fetchPokemons() {
-    for (let i = 1; i <= pokemon_number; i++) {
-        await getPokemon(i);
-    }
-};
-
-async function getPokemon(id) {
-    const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+async function getPokemon() {
+  for (let i = 1; i<= pokemon_number; i++ ) {
+    const url = `https://pokeapi.co/api/v2/pokemon/${i}`;
     const res = await fetch(url);
     const pokemon = await res.json();
     createPokemon(pokemon);
-    
+  }
 }
 
 function createPokemon (pokemon) {
@@ -28,8 +22,8 @@ function createPokemon (pokemon) {
   </div>
   <div class="info">
     <span class="number">${id}</span>
-    <h3 class="name">${name.toIpp}</h3>
-    <small class="type">Type: <span>${type}</span></small>
+    <h3 class="name">${name.charAt(0).toUpperCase() + name.slice(1)}</h3>
+    <small class="type">Type: <span>${type.charAt(0).toUpperCase() + type.slice(1)}</span></small>
   </div>
   `;
     pokemonObject.innerHTML = pokemonInnerHTML;
@@ -60,6 +54,6 @@ function liveSearch() {
   }
 
 
-fetchPokemons();
+getPokemon();
 
 
